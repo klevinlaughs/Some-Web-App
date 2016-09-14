@@ -1,6 +1,8 @@
 'use strict';
 
 var gulp = require('gulp');
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
 var ts = require('gulp-typescript');
 var del = require('del');
 var sass = require('gulp-sass');
@@ -11,7 +13,13 @@ var appDir = 'app'
 
 gulp.task('default', ['build']);
 
-gulp.task('build', ['typescript', 'sass']);
+gulp.task('build', ['typescript', 'sass'], function(){
+    //browserify?
+    return browserify(`${appDir}/test.js`)
+            .bundle()
+            .pipe(source('bundle.js'))
+            .pipe(gulp.dest(`${appDir}`));
+});
 
 gulp.task('typescript', function(){
     var tsResult = proj.src()

@@ -12,7 +12,7 @@ var PORT = process.env.PORT || 6969;
 
 let _root = process.cwd();
 let _nodeModules = '/node_modules/';
-let _clientFiles = '/app/'
+let _clientFiles = '/app/';
 
 app.use(express.static(_root + _nodeModules));
 app.use(express.static(_root + _clientFiles));
