@@ -5,37 +5,39 @@ var ts = require('gulp-typescript');
 var del = require('del');
 var sass = require('gulp-sass');
 var proj = ts.createProject('tsconfig.json');
+var merge = require('merge2');
+
+var appDir = 'app'
 
 gulp.task('default', ['build']);
 
-gulp.task('build', ['html', 'scripts', 'styles', 'fonts']);
+gulp.task('build', ['typescript', 'sass']);
 
-gulp.task('html', function(){
-  return gulp.src('src/**/*.html').pipe(gulp.dest('www'));
-});
-
-gulp.task('scripts', ['javascript', 'typescript']);
-
-gulp.task('javascript', function(){
-  return gulp.src('src/scripts/**/*.js').pipe(gulp.dest('www/scripts'));
-});
 gulp.task('typescript', function(){
-  return proj.src().pipe(ts(proj)).js.pipe(gulp.dest('www/scripts'));
+    var tsResult = proj.src()
+        .pipe(ts(proj));
+
+    return merge([
+        tsResult.dts.pipe(gulp.dest(appDir)),
+        tsResult.js.pipe(gulp.dest(appDir))
+    ]);
 });
 
-gulp.task('styles', ['css', 'sass']);
+// gulp.task('watch', ['typescript'], function() {
+//     gulp.watch('${appDir}/**/*.ts', ['typescript']);
+// });
 
-gulp.task('css', function(){
-  return gulp.src('src/css/**/*.css').pipe(gulp.dest('www/css'));
-});
 gulp.task('sass', function(){
-  return gulp.src('src/css/**/*.scss').pipe(sass().on('error', sass.logError)).pipe(gulp.dest('www/css'));
-});
-
-gulp.task('fonts', function(){
-  return gulp.src('src/fonts/**/*.*').pipe(gulp.dest('www/fonts'));
+  return gulp.src(`${appDir}/css/**/*.scss`)
+            .pipe(sass().on('error', sass.logError))
+            .pipe(gulp.dest(appDir));
 });
 
 gulp.task('clean', function(){
-  return del(['www/**/*']);
+    //return del([appDir+'/**/*.js', '!'+appDir+'/scripts/*.js', '!'+appDir])
+    return del([`${appDir}/**/*.js`, `!${appDir}/scripts/*.js`, `!${appDir}`])
+    .then(paths => {
+        console.log('\nDeleted files and folders:\n', paths.join('\n'));
+        console.log('');
+    });
 });

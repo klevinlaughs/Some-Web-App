@@ -9,6 +9,7 @@
     "del": "^2.2.1",
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2",
-    "gulp-typescript": "^2.13.6"
+    "gulp-typescript": "^2.13.6",
+    "merge2": "^1.0.2"
   }
 }

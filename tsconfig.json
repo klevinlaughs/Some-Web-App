@@ -1,12 +1,14 @@
 {
   "exclude" : [
-    "node_modules"
+    "node_modules",
+    "typings"
   ],
 
   "compileOnSave" : false,
 
   "compilerOptions" : {
     "noImplicitAny" : true,
-    "target" : "es6"
+    "target" : "es6",
+    "module" : "commonjs"
   }
 }
