@@ -2,14 +2,24 @@
   "name": "klevin-module-two",
   "version": "1.0.0",
   "description": "MSA 2016, Phase 1, Module 2 : Make a web app of any kind",
-  "main": "main.js",
+  "main": "app/main.js",
   "author": "Kelvin Lau",
   "license": "ISC",
+  "scripts": {
+    "start": "node app/main"
+  },
   "devDependencies": {
     "del": "^2.2.1",
     "gulp": "^3.9.1",
     "gulp-sass": "^2.3.2",
     "gulp-typescript": "^2.13.6",
     "merge2": "^1.0.2"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "http": "0.0.0",
+    "os": "^0.1.1",
+    "path": "^0.12.7",
+    "typescript": "^1.8.10"
   }
 }
