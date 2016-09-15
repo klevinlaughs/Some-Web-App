@@ -23,9 +23,10 @@ let _clientFiles = '/app/';
 //   next();
 // });
 let corsOptions = {
+    "methods" : 'GET,PUT,POST,DELETE,OPTIONS,HEAD',
     "credentials" : true,
     "allowedHeaders" : 'Content-Type,Authorization',
-    preflightContinue : true
+    "preflightContinue" : true
 };
 app.use(cors(corsOptions));
 
