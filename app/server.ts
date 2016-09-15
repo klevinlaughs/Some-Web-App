@@ -22,7 +22,12 @@ let _clientFiles = '/app/';
 //   res.header("Access-Control-Request-Method", "*");
 //   next();
 // });
-app.use(cors());
+let corsOptions = {
+    "credentials" : true,
+    "allowedHeaders" : 'Content-Type,Authorization',
+    preflightContinue : true
+};
+app.use(cors(corsOptions));
 
 app.use(express.static(_root + _nodeModules));
 app.use(express.static(_root + _clientFiles));
