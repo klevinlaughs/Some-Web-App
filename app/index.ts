@@ -28,7 +28,7 @@ function getAnswers(query : String, numResults : number) : void {
     };
 
     algorithmia.client(authKey)
-               .algo("/nus/SearchEngineAggregator/0.1.1")
+               .algo("algo://nus/SearchEngineAggregator/0.1.1")
                .pipe(input)
                .then(function(response: any) {
                    let results = response.get();
