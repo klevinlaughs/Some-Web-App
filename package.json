@@ -21,6 +21,7 @@
   "dependencies": {
     "algorithmia": "^0.3.6",
     "bootstrap": "^3.3.7",
+    "cors": "^2.8.1",
     "express": "^4.14.0",
     "jquery": "^3.1.0",
     "os": "^0.1.1",
