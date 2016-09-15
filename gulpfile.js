@@ -15,7 +15,7 @@ gulp.task('default', ['build']);
 
 gulp.task('build', ['typescript', 'sass'], function(){
     //browserify?
-    return browserify(`${appDir}/test.js`)
+    return browserify(`${appDir}/index.js`)
             .bundle()
             .pipe(source('bundle.js'))
             .pipe(gulp.dest(`${appDir}`));
@@ -31,9 +31,9 @@ gulp.task('typescript', function(){
     ]);
 });
 
-// gulp.task('watch', ['typescript'], function() {
-//     gulp.watch('${appDir}/**/*.ts', ['typescript']);
-// });
+gulp.task('watch', ['build'], function() {
+    gulp.watch(`${appDir}/**/*.ts`, ['build']);
+});
 
 gulp.task('sass', function(){
   return gulp.src(`${appDir}/css/**/*.scss`)
@@ -43,7 +43,7 @@ gulp.task('sass', function(){
 
 gulp.task('clean', function(){
     //return del([appDir+'/**/*.js', '!'+appDir+'/scripts/*.js', '!'+appDir])
-    return del([`${appDir}/**/*.js`, `!${appDir}/scripts/*.js`, `!${appDir}`])
+    return del([`${appDir}/**/*.js`, `!${appDir}/lib/**/*.js`, `!${appDir}`])
     .then(paths => {
         console.log('\nDeleted files and folders:\n', paths.join('\n'));
         console.log('');
