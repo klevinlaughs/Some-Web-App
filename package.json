@@ -6,7 +6,8 @@
   "author": "Kelvin Lau",
   "license": "ISC",
   "scripts": {
-    "start": "node app/server"
+    "start": "gulp && node app/server",
+    "serve": "node app/server"
   },
   "devDependencies": {
     "bootstrap": "^3.3.7",
